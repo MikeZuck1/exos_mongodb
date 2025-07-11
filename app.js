@@ -21,7 +21,7 @@ mongoose
     console.log("Connected to the DB ? ok !");
     human
       .find({})
-      .sort({ date: - 1 }) // sort by createdAt in descending order
+      .sort({ date: - 1 }) // sort by date in descending order
       .limit(5) // limit to 10 results
       .select("name age date")
       .then((human) => {
