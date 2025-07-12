@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv").config(); // load environment variables from .env file
+const morgan = require('morgan');
 const mongoose = require("mongoose");
 
 // define a simple schema
@@ -14,6 +15,8 @@ const userSchema = new mongoose.Schema({
 // create a model from the schema
 const human = mongoose.model("human", userSchema, "human");
 
+const max = 10;
+
 // connect to MongoDB
 mongoose
   .connect(process.env.DATABASE_MONGODB_URI, {})
@@ -22,13 +25,13 @@ mongoose
     human
       .find({})
       .sort({ date: - 1 }) // sort by date in descending order
-      .limit(10) // limit to 10 results
+      .limit(max) // limit to 10 results
       .select("name age date")
       .then((human) => {
         console.log("Our users:", human);
       })
       .catch((err) => {
-        console.error("K.O : Error fetching collections --", err);
+        console.error("K.O : Error fetching collections -- ", err);
       });
   })
   .catch((err) => {
