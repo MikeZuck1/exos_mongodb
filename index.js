@@ -1,10 +1,24 @@
 const express = require("express");
 const app = express();
+const path = require("path");
+// loging middleware
+const morgan = require("morgan");
+// ...
 const dotenv = require("dotenv").config(); // load environment variables from .env file
-const morgan = require('morgan');
+// const bcrypt = require("bcrypt");
+// Database connection
 const mongoose = require("mongoose");
 
-morgan('dev') // use morgan for logging requests
+// middleware for logging requests
+app.use(morgan("dev")); // use morgan for logging requests
+
+app.set("view engine", "pug"); // set the view engine to pug
+app.set("views", path.join(__dirman, "views")); // set the views directory
+
+// Method to template engine
+app.get("/", (req, res) => {
+  res.status(200).render("index");
+});
 
 // define a simple schema
 const userSchema = new mongoose.Schema(
@@ -45,7 +59,5 @@ mongoose
   .catch((err) => {
     console.error("K.O : Error connecting to the DB -- ", err);
   });
- 
-app.listen(3000, () => {
-  console.log("Server is working on port 3000");
-});
+
+app.listen(3000);
