@@ -2,18 +2,16 @@ doctype html
 html(lang="en")
   head
     meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title index
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title User Management API
   body
-    h1 Index engine (moteur de rendu)
-    nav
-      ul
-        li: a(href="/") Home
-        li: a(href="/about") About
-        li: a(href="/contact") Contact
-    div.paragraph
-      p This is a simple Pug template for the index page.
-      p You can add more content here as needed.
-      p For example, you can link to other pages or include additional information.
-    script(src="/js/script.js")
-
+    h1 User Management API
+    p Welcome to the User Management API. This API allows you to manage users, including creating, updating, and deleting user accounts.
+    p To get started, you can use the following endpoints:
+    ul
+      li GET /users - Retrieve a list of all users
+      li POST /users - Create a new user
+      li GET /users/:id - Retrieve a specific user by ID
+      li PUT /users/:id - Update a specific user by ID
+      li DELETE /users/:id - Delete a specific user by ID
+    p For more information, please refer to the API documentation.
