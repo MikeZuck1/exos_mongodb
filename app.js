@@ -5,7 +5,8 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/database");
 const morgan = require("morgan");
-const userRoutes = require("./routes/index"); // Vérifie bien le nom du fichier !
+const userRoutes = require("./routes/index");
+const usersRoutes = require("./routes/users");
 
 // Connect to DB
 connectDB()
@@ -25,7 +26,7 @@ app.use(morgan("dev")); // HTTP request logger
 
 // Routes
 app.use("/", userRoutes);
-app.use("/user", userRoutes);
+app.use("/users", usersRoutes);
 
 // Views config
 app.set("views", "./views");
